@@ -3,9 +3,9 @@ package com.deca.diffequationscomputationalassignment;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +16,13 @@ abstract public class NumericalSolution extends Solution {
 
     NumericalSolution(double x0, double X, double y0, int N) {
         super(x0, X, y0, N);
+    }
+
+    public double f(double x, double y) {
+        if (-0.01 < x && x < 0.01) {
+            x += h;
+        }
+        return (y * y - y) / x;
     }
 
     public List<XYChart.Series<Number, Number>> getLocalErrors() {
@@ -41,7 +48,7 @@ abstract public class NumericalSolution extends Solution {
             NumericalSolution eulerMethod = this.getClass().getConstructor(constructorParameters).newInstance(x0, X, y0, n);
             double maxError = 0;
             for (XYChart.Series<Number, Number> seriesOfLErrors : eulerMethod.getLocalErrors()) {
-                Optional<XYChart.Data<Number, Number>> maxLError = seriesOfLErrors.getData().stream().max((first, second) -> Double.compare(first.getYValue().doubleValue(), second.getYValue().doubleValue()));
+                Optional<XYChart.Data<Number, Number>> maxLError = seriesOfLErrors.getData().stream().max(Comparator.comparingDouble(numberNumberData -> numberNumberData.getYValue().doubleValue()));
                 maxError = max(maxError, maxLError.get().getYValue().doubleValue());
             }
             series.getData().add(new XYChart.Data<>(n, maxError));

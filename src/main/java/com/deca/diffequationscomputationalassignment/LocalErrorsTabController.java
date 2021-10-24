@@ -12,9 +12,6 @@ import javafx.scene.control.TextField;
 public class LocalErrorsTabController {
 
     @FXML
-    private CheckBox checkExact;
-
-    @FXML
     private CheckBox checkEuler;
 
     @FXML
@@ -91,7 +88,6 @@ public class LocalErrorsTabController {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return;
         }
     }
 }

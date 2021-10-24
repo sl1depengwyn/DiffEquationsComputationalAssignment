@@ -9,15 +9,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Objects;
-
 public class GlobalErrorsTabController {
-
-    private double x0 = 1;
-    private double X = 10;
-    private double y0 = 0.5;
-    private int N = 10;
 
     @FXML
     private CheckBox checkEuler;
@@ -27,6 +19,15 @@ public class GlobalErrorsTabController {
 
     @FXML
     private CheckBox checkRK;
+
+    @FXML
+    private TextField y0TextField;
+
+    @FXML
+    private TextField XTextField;
+
+    @FXML
+    private TextField x0TextField;
 
     @FXML
     private TextField n0TextField;
@@ -41,18 +42,25 @@ public class GlobalErrorsTabController {
     private LineChart<Number, Number> globalErrorsChart;
 
     @FXML
-    public void initialize() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void initialize() {
         applyFormatters();
         recalculate();
     }
 
     public void applyFormatters() {
+        x0TextField.setTextFormatter(TextFormatterCollection.DoubleFormatter.getTextFormatter(1));
+        XTextField.setTextFormatter(TextFormatterCollection.DoubleFormatter.getTextFormatter(10));
+        y0TextField.setTextFormatter(TextFormatterCollection.DoubleFormatter.getTextFormatter(0.5));
         n0TextField.setTextFormatter(TextFormatterCollection.NaturalFormatter.getTextFormatter(5));
         NTextField.setTextFormatter(TextFormatterCollection.NaturalFormatter.getTextFormatter(15));
     }
 
     @FXML
-    private void recalculate() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    private void recalculate() {
+        try {
+            double x0 = Double.parseDouble(x0TextField.getText());
+            double X = Double.parseDouble(XTextField.getText());
+            double y0 = Double.parseDouble(y0TextField.getText());
             int n0 = Integer.parseInt(n0TextField.getText());
             int N = Integer.parseInt(NTextField.getText());
 
@@ -82,5 +90,9 @@ public class GlobalErrorsTabController {
                 RungeKuttaMethod RKMethod = new RungeKuttaMethod(x0, X, y0, N);
                 RKMethod.drawGlobalErrorsOnGraph(n0, N, globalErrorsChart);
             }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

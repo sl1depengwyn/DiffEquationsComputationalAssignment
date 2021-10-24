@@ -21,7 +21,7 @@ public abstract class TextFormatterCollection {
             }
         };
 
-        static StringConverter<Double> converter = new StringConverter<Double>() {
+        static StringConverter<Double> converter = new StringConverter<>() {
 
             @Override
             public Double fromString(String s) {
@@ -57,7 +57,7 @@ public abstract class TextFormatterCollection {
             }
         };
 
-        static StringConverter<Integer> converter = new StringConverter<Integer>() {
+        static StringConverter<Integer> converter = new StringConverter<>() {
 
             @Override
             public Integer fromString(String s) {

@@ -1,15 +1,10 @@
 package com.deca.diffequationscomputationalassignment;
 
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.Math.abs;
 
 public class ImprovedEulerMethod extends NumericalSolution {
 
@@ -22,11 +17,6 @@ public class ImprovedEulerMethod extends NumericalSolution {
         super(x0, X, y0, N);
         color = Color.ORANGE;
     }
-
-    public double f(double x, double y) {
-        return (y * y - y) / x;
-    }
-
 
     @Override
     public List<XYChart.Series<Number, Number>> getSolution() {

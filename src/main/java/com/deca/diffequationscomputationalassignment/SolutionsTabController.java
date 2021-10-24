@@ -9,8 +9,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import javafx.scene.layout.AnchorPane;
-
 
 public class SolutionsTabController {
 
@@ -78,7 +76,7 @@ public class SolutionsTabController {
             }
 
             if (x0 < 0 && 0 < X) {
-                errorText.setText("Numerical methods can give solution only until point of discontinuity");
+                errorText.setText("Numerical methods can give unstable solutions if there is a point of discontinuity in the range");
             } else {
                 errorText.setText("");
             }
@@ -86,7 +84,7 @@ public class SolutionsTabController {
 
 
             if (checkExact.isSelected()) {
-                ExactSolution exactMethod = new ExactSolution(x0, X, y0, 100);
+                ExactSolution exactMethod = new ExactSolution(x0, X, y0, 1);
                 exactMethod.drawSolutionOnGraph(solutionsChart);
             }
 
@@ -108,7 +106,6 @@ public class SolutionsTabController {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return;
         }
     }
 }
