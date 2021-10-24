@@ -43,7 +43,7 @@ public class GlobalErrorsTabController {
 
     @FXML
     public void initialize() {
-        applyFormatters();  
+        applyFormatters();
         recalculate();
     }
 

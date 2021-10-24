@@ -21,7 +21,7 @@ public abstract class Solution {
         this.X = X;
         this.y0 = y0;
         this.N = N;
-        c = (1 - y0) / (y0 * x0);
+        c = (y0 - 1) / (y0 * x0);
         h = (X - x0) / this.N;
     }
 

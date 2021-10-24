@@ -18,7 +18,7 @@ public class ExactSolution extends Solution {
     }
 
     public double solution(double x) {
-        return 1 / (x * c + 1);
+        return 1 / (1 - x * c);
     }
 
     @Override
