@@ -9,6 +9,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.util.Objects;
+
 
 public class SolutionsTabController {
 
@@ -67,21 +69,20 @@ public class SolutionsTabController {
             ObservableList<XYChart.Series<Number, Number>> graphs = FXCollections.observableArrayList();
             solutionsChart.setData(graphs);
 
+            errorText.setText("");
 
             if (x0 >= X) {
                 errorText.setText("X must be greater than x0!");
                 return;
-            } else {
-                errorText.setText("");
             }
 
             if (x0 < 0 && 0 < X) {
                 errorText.setText("Numerical methods can give unstable solutions if there is a point of discontinuity in the range");
-            } else {
-                errorText.setText("");
             }
 
-
+            if ((X - x0) / N >= 1) {
+                errorText.setText(errorText.getText().concat("\nNumerical methods are not so precise if the step is greater than 1"));
+            }
 
             if (checkExact.isSelected()) {
                 ExactSolution exactMethod = new ExactSolution(x0, X, y0, 1);
@@ -102,7 +103,7 @@ public class SolutionsTabController {
                 RungeKuttaMethod RKMethod = new RungeKuttaMethod(x0, X, y0, N);
                 RKMethod.drawSolutionOnGraph(solutionsChart);
             }
-            
+
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

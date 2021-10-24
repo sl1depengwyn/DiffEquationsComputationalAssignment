@@ -68,11 +68,24 @@ public class GlobalErrorsTabController {
             globalErrorsChart.setData(graphs);
 
 
-            if (n0 > N) {
-                errorText.setText("N must be greater than n0!");
+            errorText.setText("");
+
+            if (x0 >= X) {
+                errorText.setText("X must be greater than x0!");
                 return;
-            } else {
-                errorText.setText("");
+            }
+
+            if (n0 >= N) {
+                errorText.setText("N must be grater than n0");
+                return;
+            }
+
+            if (x0 < 0 && 0 < X) {
+                errorText.setText("Numerical methods can give unstable solutions if there is a point of discontinuity in the range");
+            }
+
+            if ((X - x0) / N >= 1) {
+                errorText.setText(errorText.getText().concat("\nNumerical methods are not so precise if the step is greater than 1"));
             }
 
 

@@ -44,7 +44,7 @@ abstract public class NumericalSolution extends Solution {
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
         Class[] constructorParameters = {double.class, double.class, double.class, int.class};
 
-        for (int n = n0; n < N; ++n) {
+        for (int n = n0; n <= N; ++n) {
             NumericalSolution eulerMethod = this.getClass().getConstructor(constructorParameters).newInstance(x0, X, y0, n);
             double maxError = 0;
             for (XYChart.Series<Number, Number> seriesOfLErrors : eulerMethod.getLocalErrors()) {

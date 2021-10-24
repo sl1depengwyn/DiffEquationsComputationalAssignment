@@ -64,11 +64,19 @@ public class LocalErrorsTabController {
             localErrorsChart.setData(graphs);
 
 
-            if (x0 > X) {
+            errorText.setText("");
+
+            if (x0 >= X) {
                 errorText.setText("X must be greater than x0!");
                 return;
-            } else {
-                errorText.setText("");
+            }
+
+            if (x0 < 0 && 0 < X) {
+                errorText.setText("Numerical methods can give unstable solutions if there is a point of discontinuity in the range");
+            }
+
+            if ((X - x0) / N >= 1) {
+                errorText.setText(errorText.getText().concat("\nNumerical methods are not so precise if the step is greater than 1"));
             }
 
 
