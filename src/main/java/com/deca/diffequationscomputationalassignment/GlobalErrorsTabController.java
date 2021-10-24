@@ -43,13 +43,13 @@ public class GlobalErrorsTabController {
 
     @FXML
     public void initialize() {
-        applyFormatters();
+        applyFormatters();  
         recalculate();
     }
 
     public void applyFormatters() {
         x0TextField.setTextFormatter(TextFormatterCollection.DoubleFormatter.getTextFormatter(1));
-        XTextField.setTextFormatter(TextFormatterCollection.DoubleFormatter.getTextFormatter(10));
+        XTextField.setTextFormatter(TextFormatterCollection.DoubleFormatter.getTextFormatter(9));
         y0TextField.setTextFormatter(TextFormatterCollection.DoubleFormatter.getTextFormatter(0.5));
         n0TextField.setTextFormatter(TextFormatterCollection.NaturalFormatter.getTextFormatter(5));
         NTextField.setTextFormatter(TextFormatterCollection.NaturalFormatter.getTextFormatter(15));
