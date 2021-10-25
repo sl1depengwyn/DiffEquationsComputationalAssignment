@@ -16,6 +16,7 @@ public class EulerMethod extends NumericalSolution {
         color = Color.RED;
     }
 
+    @Override
     public List<XYChart.Series<Number, Number>> getSolution() {
 
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
