@@ -13,7 +13,7 @@ public class ExactSolution extends Solution {
     ExactSolution(double x0, double X, double y0, int N) {
         super(x0, X, y0, N);
         color = Color.GREEN;
-        pointOfDiscontinuity = -1 / c;
+        pointOfDiscontinuity = 1 / c;
         h = 0.1;
     }
 
@@ -27,7 +27,9 @@ public class ExactSolution extends Solution {
         XYChart.Series<Number, Number> seriesBeforePointOfDiscontinuity = new XYChart.Series<>();
         XYChart.Series<Number, Number> seriesAfterPointOfDiscontinuity = new XYChart.Series<>();
         double newY;
+        System.out.println(pointOfDiscontinuity);
         if (x0 < pointOfDiscontinuity && pointOfDiscontinuity < X) {
+            System.out.println("pod in raange");
             for (double x = x0; x < pointOfDiscontinuity; x += h) {
                 newY = solution(x);
                 if (!Double.isFinite(newY)) {
