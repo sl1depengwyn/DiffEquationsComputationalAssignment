@@ -48,7 +48,7 @@ abstract public class NumericalSolution extends Solution {
             NumericalSolution eulerMethod = this.getClass().getConstructor(constructorParameters).newInstance(x0, X, y0, n);
             double maxError = 0;
             for (XYChart.Series<Number, Number> seriesOfLErrors : eulerMethod.getLocalErrors()) {
-                Optional<XYChart.Data<Number, Number>> maxLError = seriesOfLErrors.getData().stream().max(Comparator.comparingDouble(numberNumberData -> numberNumberData.getYValue().doubleValue()));
+                Optional<XYChart.Data<Number, Number>> maxLError = seriesOfLErrors.getData().stream().max(Comparator.comparingDouble(numberData -> numberData.getYValue().doubleValue()));
                 maxError = max(maxError, maxLError.get().getYValue().doubleValue());
             }
             series.getData().add(new XYChart.Data<>(n, maxError));
